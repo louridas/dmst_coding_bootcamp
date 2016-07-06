@@ -129,9 +129,9 @@ public class Exercise1
 			  return 10;
 			case 'L':
 			  return 50;
-			case 'D':
-			  return 100;
 			case 'C':
+			  return 100;
+			case 'D':
 			  return 500;
 			default:
 			  return 1000;
@@ -192,13 +192,13 @@ public class Exercise1
 
 		if((int)x3/5==1)
 		{
-		   System.out.print("C");
+		   System.out.print("D");
 	       for(int i=1;i<=x3%5;i++)
-		     System.out.print("D");
+		     System.out.print("C");
 		}
 	    else
 	    {   for(int i=1;i<=x3;i++)
-	          System.out.print("D");
+	          System.out.print("C");
 	    }
 
 	    if((int)x2/5==1)
