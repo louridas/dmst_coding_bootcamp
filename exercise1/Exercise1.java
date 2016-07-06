@@ -9,14 +9,14 @@ public class Exercise1
 		double sum_arabic,sum1=0,sum2=0;
 		char first_char,first_char2;
 
-		System.out.println("πληκτρολόγησε την αριθμιτική έκφραση\nσημείωση:η ελληνικη αριθμιτική ειναι στα greeklish");
-	    Scanner sc = new Scanner(System.in);
-        String ekfrasi = sc.next();
-        first_char=ekfrasi.charAt(0);
+		System.out.println("Γ°Γ«Γ§ΓªΓ΄Γ±Γ―Γ«ΓΌΓ£Γ§Γ³Γ¥ Γ΄Γ§Γ­ Γ΅Γ±Γ©Γ¨Γ¬Γ©Γ΄Γ©ΓªΓ ΓΓªΓ¶Γ±Γ΅Γ³Γ§\nΓ³Γ§Γ¬Γ¥ΓΓΉΓ³Γ§:Γ§ Γ¥Γ«Γ«Γ§Γ­Γ©ΓªΓ§ Γ΅Γ±Γ©Γ¨Γ¬Γ©Γ΄Γ©ΓªΓ Γ¥Γ©Γ­Γ΅Γ© Γ³Γ΄Γ΅ greeklish");
+	        Scanner sc = new Scanner(System.in);
+                String ekfrasi = sc.next();
+                first_char=ekfrasi.charAt(0);
 
-        while(ekfrasi.charAt(0)!='\n')
-        {
-            sumvolo=thesi_sumvolou(ekfrasi);
+                while(ekfrasi.charAt(0)!='\n')
+                {
+                        sumvolo=thesi_sumvolou(ekfrasi);
 
 			if(Character.isDigit(first_char))
 			{
@@ -43,7 +43,7 @@ public class Exercise1
 
 			}
 
-            first_char2=ekfrasi.charAt(sumvolo+1);
+                        first_char2=ekfrasi.charAt(sumvolo+1);
 			if(Character.isDigit(first_char2))
 			{
 				sum2=0;
@@ -85,9 +85,9 @@ public class Exercise1
 			sum_elliniko(sum_arabic);
 			System.out.println();
 
-			System.out.println("πληκτρολόγησε αριθμιτική έκφραση ");
-            ekfrasi = sc.next();
-            first_char=ekfrasi.charAt(0);
+			System.out.println("Γ°Γ«Γ§ΓªΓ΄Γ±Γ―Γ«ΓΌΓ£Γ§Γ³Γ¥ Γ΅Γ±Γ©Γ¨Γ¬Γ©Γ΄Γ©ΓªΓ ΓΓªΓ¶Γ±Γ΅Γ³Γ§ ");
+                        ekfrasi = sc.next();
+                        first_char=ekfrasi.charAt(0);
 		}
 
 	}
@@ -105,18 +105,18 @@ public class Exercise1
 			   }
 		}
 		return sumvolo;
-    }
-    /*public static int sugkrish(String ekfrasi,int i)
-    {
+        }
+        /*public static int sugkrish(String ekfrasi,int i)
+            {
 		char[] latin = {'I','V','X','L','C','D','M'};
 		int m=0;
 		for(int y=0;y<latin.length;y++)
-	    {
+	           {
 			if(ekfrasi.charAt(i)== latin[y])
 			   m=y;
-		}
+		    }
 		return m;
-	}*/
+	   }*/
 	public static int metatropi_latin(char ch) //metatrepei ton latiniko ari8mo se arabic
 	{
 		switch(ch)
@@ -139,14 +139,14 @@ public class Exercise1
 	}
 	public static int metatropi_elliniko(char st) //metatrepei ton elliniko ari8mo se arabic
 	{
-		/*char[] el1={'-','Α','B','Γ','Δ','Ε','ς','Ζ','Η','Θ'};
-		char[] el2={'-','Ι','Κ','Λ','Μ','Ν','Ξ','Ο','Π','Q'}; //το J ειναι το αντίστοιχο σύμβολο του 90
-		char[] el3={'-','Ρ','Σ','Τ','Υ','Φ','Χ','Ψ','Ω','W'}; //το  G ειναι το αντίστοιχο σύμβολο του 900 kai h komma antistoixei sto 1000
+		/*char[] el1={'-','Γ','B','Γƒ','Γ„','Γ…','Γ²','Γ†','Γ‡','Γ'};
+		char[] el2={'-','Γ‰','Γ','Γ‹','Γ','Γ','Γ','Γ','Γ','Q'}; //Γ΄Γ― J Γ¥Γ©Γ­Γ΅Γ© Γ΄Γ― Γ΅Γ­Γ΄ΓΓ³Γ΄Γ―Γ©Γ·Γ― Γ³Γ½Γ¬ΓΆΓ―Γ«Γ― Γ΄Γ―Γµ 90
+		char[] el3={'-','Γ‘','Γ“','Γ”','Γ•','Γ–','Γ—','Γ','Γ™','W'}; //Γ΄Γ―  G Γ¥Γ©Γ­Γ΅Γ© Γ΄Γ― Γ΅Γ­Γ΄ΓΓ³Γ΄Γ―Γ©Γ·Γ― Γ³Γ½Γ¬ΓΆΓ―Γ«Γ― Γ΄Γ―Γµ 900 kai h komma antistoixei sto 1000
 
-		επειδη δεν τρεχει με τους ελληνικους χαρακτηρες, τους αντιστοιχω στους ξενους*/
-		char[] el1={'-','a','b','g','d','e','c','z','h','v'}; // TO 'c' θα αντιστοιχει στο ΣΤ, to 'v' αντιστοιχει στο 'θ'
-	    char[] el2={'-','i','k','l','m','n','j','o','p','Q'}; //το Q ειναι το αντίστοιχο σύμβολο του 90, το j αντιστοιχει στο ελληνικο Ξ
-		char[] el3={'-','r','s','t','u','f','x','y','w','W'}; //το  W ειναι το αντίστοιχο σύμβολο του 900
+		Γ¥Γ°Γ¥Γ©Γ¤Γ§ Γ¤Γ¥Γ­ Γ΄Γ±Γ¥Γ·Γ¥Γ© Γ¬Γ¥ Γ΄Γ―ΓµΓ² Γ¥Γ«Γ«Γ§Γ­Γ©ΓªΓ―ΓµΓ² Γ·Γ΅Γ±Γ΅ΓªΓ΄Γ§Γ±Γ¥Γ², Γ΄Γ―ΓµΓ² Γ΅Γ­Γ΄Γ©Γ³Γ΄Γ―Γ©Γ·ΓΉ Γ³Γ΄Γ―ΓµΓ² Γ®Γ¥Γ­Γ―ΓµΓ²*/
+		char[] el1={'-','a','b','g','d','e','c','z','h','v'}; // TO 'c' Γ¨Γ΅ Γ΅Γ­Γ΄Γ©Γ³Γ΄Γ―Γ©Γ·Γ¥Γ© Γ³Γ΄Γ― Γ“Γ”, to 'v' Γ΅Γ­Γ΄Γ©Γ³Γ΄Γ―Γ©Γ·Γ¥Γ© Γ³Γ΄Γ― 'Γ¨'
+	        char[] el2={'-','i','k','l','m','n','j','o','p','Q'}; //Γ΄Γ― Q Γ¥Γ©Γ­Γ΅Γ© Γ΄Γ― Γ΅Γ­Γ΄ΓΓ³Γ΄Γ―Γ©Γ·Γ― Γ³Γ½Γ¬ΓΆΓ―Γ«Γ― Γ΄Γ―Γµ 90, Γ΄Γ― j Γ΅Γ­Γ΄Γ©Γ³Γ΄Γ―Γ©Γ·Γ¥Γ© Γ³Γ΄Γ― Γ¥Γ«Γ«Γ§Γ­Γ©ΓªΓ― Γ
+		char[] el3={'-','r','s','t','u','f','x','y','w','W'}; //Γ΄Γ―  W Γ¥Γ©Γ­Γ΅Γ© Γ΄Γ― Γ΅Γ­Γ΄ΓΓ³Γ΄Γ―Γ©Γ·Γ― Γ³Γ½Γ¬ΓΆΓ―Γ«Γ― Γ΄Γ―Γµ 900
 
 		int x = 0 ;
 		for(int i=1;i<el1.length;i++)
@@ -222,7 +222,7 @@ public class Exercise1
 		{   for(int i=1;i<=x1;i++)
 			  System.out.print("I");
 	    }
-    }
+       }
     public static void sum_elliniko(double sum) //metatrepei to elliniko a8roisma se arabic
     {
 		double x1,x2,x3;
