@@ -49,7 +49,7 @@ public class Metatropes {
 		return sum;
 		
 	}
-	public double greek_to_arabic(String expression) 
+	public int greek_to_arabic(String expression) 
 	{
 		/*char[] el1={'-','Á','B','Ã','Ä','Å','ò','Æ','Ç','È'};
 		char[] el2={'-','É','Ê','Ë','Ì','Í','Î','Ï','Ð','Q'}; 
@@ -78,7 +78,7 @@ public class Metatropes {
 			}	
 		}
 		
-        return sum;
+        return (int)sum;
 
 	}
 
@@ -130,10 +130,12 @@ public class Metatropes {
 
 		}
     }
-    public void arabic_to_greek(double sum) //it converts the arabic numeral to greek
+    public String arabic_to_greek(double sum) //it converts the arabic numeral to greek
     {
 		int[] x = new int[3];
-   
+		char[] result = new char[4];
+        int k=0;
+        
 		x[0]=(int)sum%10;
 		x[1]=(int)(sum/10)%10;
 		x[2]=(int)sum/100;
@@ -151,11 +153,14 @@ public class Metatropes {
 			{
 				if(x[i]==y)
 				{
-					System.out.print(el[i][y]);
+					result[k]=el[i][y];
+					k=k+1;
 				}
 			}
 		}
-		System.out.print("'");
+		
+		String resultstr=new String(result);
+		return resultstr;
     }
-
+    
 }

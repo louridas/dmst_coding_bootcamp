@@ -6,7 +6,7 @@ public class Exercise2 {
 	public static void main(String[] args) {
 		
 		int indexOp; 
-		double sum_arabic,sum1=0,sum2=0;
+		int sum_arabic,sum1=0,sum2=0;
 		char first_char,first_char2;
 		String first_string,second_string;
 		Metatropes met = new Metatropes();
@@ -71,7 +71,7 @@ public class Exercise2 {
 			System.out.println();
 			
 			System.out.print("the result in the greek numerals is : ");
-			met.arabic_to_greek(sum_arabic);
+			System.out.print(met.arabic_to_greek(sum_arabic));
 			System.out.println();
 
 			System.out.println("please type the numerical expression ");
