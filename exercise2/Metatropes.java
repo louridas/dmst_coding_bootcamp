@@ -83,52 +83,55 @@ public class Metatropes {
 	}
 
 
-	public void arabic_to_latin(double sum) //it converts the arabic numeral to roman
+	public String arabic_to_latin(double sum) //it converts the arabic numeral to roman
 	{
 		double x1,x2,x3;
+		StringBuilder st = new StringBuilder();
 
 		x1=(int)sum%10;
 		x2=(int)(sum/10)%10;
 		x3=(int)sum/100;
 
 		if(sum==1000)
-		   System.out.print("M");
+		  st.append("M");
 		else
 		{
 			if((int)x3/5==1)
 			{
-			   System.out.print("C");
+				st.append("C");
 		       for(int i=1;i<=x3%5;i++)
-			     System.out.print("D");
+		    	   st.append("D");
 			}
 		    else
 		    {   for(int i=1;i<=x3;i++)
-		          System.out.print("D");
+		    	st.append("D");
 		    }
 
 		    if((int)x2/5==1)
 			{
-			   System.out.print("L");
+		    	st.append("L");
 			   for(int i=1;i<=x2%5;i++)
-				 System.out.print("X");
+				   st.append("X");
 			}
 			else
 			{   for(int i=1;i<=x2;i++)
-				  System.out.print("X");
+				 st.append("X");
 		    }
 
 		    if((int)x1/5==1)
 			{
-			   System.out.print("V");
+		    	st.append("V");
 			   for(int i=1;i<=x1%5;i++)
-				 System.out.print("I");
+				   st.append("I");
 			}
 			else
 			{   for(int i=1;i<=x1;i++)
-				  System.out.print("I");
+				st.append("I");
 		    }
 
 		}
+		String st2 = new String(st);
+		return st2;
     }
     public String arabic_to_greek(double sum) //it converts the arabic numeral to greek
     {
@@ -145,7 +148,7 @@ public class Metatropes {
 	                   {'-','r','s','t','u','f','x','y','w','W'}};
 
 		if(sum==1000)
-		   System.out.println(",A");
+		   System.out.print(",A");
 		
 		for(int i=2;i>=0;i--)
 		{
@@ -159,7 +162,7 @@ public class Metatropes {
 			}
 		}
 		
-		String resultstr=new String(result);
+		String resultstr=(new String(result)).trim();
 		return resultstr;
     }
     

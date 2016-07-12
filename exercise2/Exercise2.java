@@ -67,12 +67,12 @@ public class Exercise2 {
 			System.out.println(sum_arabic);
 			
 			System.out.print("the result in the Roman numerals is : ");
-			met.arabic_to_latin(sum_arabic);
+			System.out.print(met.arabic_to_latin(sum_arabic));
 			System.out.println();
 			
 			System.out.print("the result in the greek numerals is : ");
 			System.out.print(met.arabic_to_greek(sum_arabic));
-			System.out.println();
+			System.out.println("'");
 
 			System.out.println("please type the numerical expression ");
 			ar_expression = sc.nextLine();
