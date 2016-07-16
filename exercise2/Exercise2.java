@@ -1,10 +1,9 @@
-package exercise2;
+package stathoula.exercise2;
 import java.util.Scanner;
 
 public class Exercise2 {
 
 	public static void main(String[] args) {
-		
 		int indexOp; 
 		int sum_arabic,sum1=0,sum2=0;
 		char first_char,first_char2;
