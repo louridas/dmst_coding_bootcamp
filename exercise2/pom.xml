@@ -3,6 +3,8 @@
   <groupId>com.stathoula</groupId>
   <artifactId>exercise2</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+  <name>exercise2</name>
+  <url>http://maven.apache.org</url>
   
   <dependencies>
     <dependency>
@@ -13,4 +15,6 @@
  </dependency>
   </dependencies>
   
+
 </project>
+  
