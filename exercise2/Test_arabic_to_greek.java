@@ -1,11 +1,11 @@
-package stathoula.exercise2;
+package com.stathoula.exercise2;
+
+import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import junit.framework.TestCase;
+public class Test_arabic_to_greek {
 
-public class Test_arabic_to_greek extends TestCase {
-	
 	@Test
 	public void test() {
 			Metatropes test = new Metatropes();

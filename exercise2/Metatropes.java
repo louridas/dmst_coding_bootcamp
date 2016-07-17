@@ -1,4 +1,4 @@
-package stathoula.exercise2;
+package com.stathoula.exercise2;
 
 public class Metatropes {
 	public int index_of_operator(String ar_expression)
@@ -14,8 +14,8 @@ public class Metatropes {
 		}
 		return operator;
     }
-    
-	public int latin_to_arabic(String expression) 
+
+	public int latin_to_arabic(String expression)
 	{
 		int sum=0;
 		for(int i=0;i<expression.length();i++)
@@ -43,23 +43,18 @@ public class Metatropes {
 				default:
 				  sum = sum + 1000;
 			}
-		
-		}
-		
-		return sum;
-		
-	}
-	public int greek_to_arabic(String expression) 
-	{
-		/*char[] el1={'-','Α','B','Γ','Δ','Ε','ς','Ζ','Η','Θ'};
-		char[] el2={'-','Ι','Κ','Λ','Μ','Ν','Ξ','Ο','Π','Q'}; 
-		char[] el3={'-','Ρ','Σ','Τ','Υ','Φ','Χ','Ψ','Ω','W'}; 
 
-		επειδη δεν τρεχει με τους ελληνικους χαρακτηρες, τους αντιστοιχω στους ξενους*/
-		char[][] el = {{'-','a','b','g','d','e','c','z','h','v'}, // TO 'c' θα αντιστοιχει στο ΣΤ, to 'v' αντιστοιχει στο 'θ'
-	                   {'-','i','k','l','m','n','j','o','p','Q'}, //το Q ειναι το αντίστοιχο σύμβολο του 90, το j αντιστοιχει στο ελληνικο Ξ
-		               {'-','r','s','t','u','f','x','y','w','W'}}; //το  W ειναι το αντίστοιχο σύμβολο του 900
-     
+		}
+
+		return sum;
+
+	}
+	public int greek_to_arabic(String expression)
+	{
+
+		char[][] el = {{'-','a','b','g','d','e','c','z','h','v'},
+	                   {'-','i','k','l','m','n','j','o','p','Q'},
+		               {'-','r','s','t','u','f','x','y','w','W'}};
 		double sum=0;
 		for(int z=0;z<expression.length();z++)
 		{
@@ -73,11 +68,11 @@ public class Metatropes {
 						break;
 					}
 				}
-				
-				
-			}	
+
+
+			}
 		}
-		
+
         return (int)sum;
 
 	}
@@ -138,18 +133,18 @@ public class Metatropes {
 		int[] x = new int[3];
 		char[] result = new char[4];
         int k=0;
-        
+
 		x[0]=(int)sum%10;
 		x[1]=(int)(sum/10)%10;
 		x[2]=(int)sum/100;
 
-		char[][] el = {{'-','a','b','g','d','e','c','z','h','v'}, 
-                       {'-','i','k','l','m','n','j','o','p','Q'}, 
+		char[][] el = {{'-','a','b','g','d','e','c','z','h','v'},
+                       {'-','i','k','l','m','n','j','o','p','Q'},
 	                   {'-','r','s','t','u','f','x','y','w','W'}};
 
 		if(sum==1000)
 		   System.out.print(",A");
-		
+
 		for(int i=2;i>=0;i--)
 		{
 			for(int y=1;y<el[i].length;y++)
@@ -161,7 +156,7 @@ public class Metatropes {
 				}
 			}
 		}
-		
+
 		String resultstr=(new String(result)).trim();
 		return resultstr;
     }
