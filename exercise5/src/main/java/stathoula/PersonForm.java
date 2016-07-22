@@ -3,6 +3,7 @@ package stathoula;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import org.hibernate.validator.constraints.Email;
 
 public class PersonForm {
@@ -39,6 +40,8 @@ public class PersonForm {
 	public void setSur(String sur) {
 		this.sur = sur;
     }
+
+
 
      public String getemail() {
 		return this.email;
