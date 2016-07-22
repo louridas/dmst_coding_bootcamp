@@ -1,4 +1,4 @@
-package com.stathoula.exercise2;
+package hello;
 import java.util.Scanner;
 
 public class Exercise2

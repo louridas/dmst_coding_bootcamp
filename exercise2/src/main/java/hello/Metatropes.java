@@ -1,4 +1,4 @@
-package com.stathoula.exercise2;
+package hello;
 
 public class Metatropes {
 	public int index_of_operator(String ar_expression)

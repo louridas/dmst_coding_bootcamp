@@ -1,15 +1,15 @@
-package com.stathoula.exercise2;
+package hello;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-public class Test_latin_to_arabic {
+public class Test_greek_to_arabic {
 
 	@Test
 	public void test() {
 		Metatropes test = new Metatropes();
-		int output = test.latin_to_arabic("XI");
+		int output = test.greek_to_arabic("ia");
 		assertEquals(11,output);
 	}
 

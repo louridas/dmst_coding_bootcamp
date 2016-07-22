@@ -1,4 +1,4 @@
-package com.stathoula.exercise2;
+package hello;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;

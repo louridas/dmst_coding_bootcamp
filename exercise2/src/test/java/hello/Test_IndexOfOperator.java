@@ -1,4 +1,4 @@
-package com.stathoula.exercise2;
+package hello;
 
 import static org.junit.Assert.*;
 
