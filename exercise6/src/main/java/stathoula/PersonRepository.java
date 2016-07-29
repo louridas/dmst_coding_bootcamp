@@ -3,8 +3,10 @@ package stathoula;
 import java.util.List;
 
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.web.bind.annotation.ModelAttribute;
 
-public interface PersonRepository extends CrudRepository<PersonForm, Long> {
+public interface PersonRepository extends CrudRepository<Person, Long> {
 
-    List<PersonForm> findBysur(String sur);
+    @ModelAttribute("persons")
+    List<Person> findBysur(String sur);
 }
