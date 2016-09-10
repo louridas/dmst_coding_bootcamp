@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <title>καταχώρηση βαθμών</title>
+  <link rel="shortcut icon" type="image/x-icon" href="opalogo.png"/>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
+	<link rel="stylesheet" type="text/css" href="css/mystyle.css"></link>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand">e-Γραμματεία</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li><a href="home.html">Αρχική</a></li>
+        <li class="active"><a href="kataxorisi.html">Καταχώρηση βαθμών</a></li>
+        <li><a href="katataksi.html">Κατάταξη</a></li>
+      </ul>
+       <ul class="nav navbar-nav navbar-right">
+	         
+      </ul>
+    </div>
+  </div>
+
+</nav>
+
+<div class="container-fluid text-center">
+<div class="row content">
+    <div class="col-sm-8 text-left">
+    <form th:action="@{/submit2}" th:object="${subject}" method="post">
+		Μαθηματικά II:<br/>
+		<input type="number" th:field="*{math}" />
+		<p th:if="${#fields.hasErrors('math')}" th:errors="*{math}">math Error</p>
+		<br/>
+		Java Ι:<br/>
+		<input type="number" th:field="*{java}" />
+	    <p th:if="${#fields.hasErrors('java')}" th:errors="*{java}">java Error</p>
+		<br/>
+		Εισαγωγή στην οικονομική θεωρία:<br/>
+	    <input type="number" th:field="*{oikonomia}" />
+	     <p th:if="${#fields.hasErrors('oikonomia')}" th:errors="*{oikonomia}">oikonomia Error</p>
+		<br/>
+		Ποσοτικές Μέθοδοι στην οικονομία Ι:<br/>
+	    <input type="number" placeholder="Enter address" th:field="*{posotikes}" />
+	    <p th:if="${#fields.hasErrors('posotikes')}" th:errors="*{posotikes}">posotikes Error</p>
+	    <br/>
+	    Λογιστική II:<br/>
+	    <input type="number" th:field="*{logistiki}" />
+	    <p th:if="${#fields.hasErrors('logistiki')}" th:errors="*{logistiki}">logistiki Error</p>
+		<br/><br/>
+		 <button type="submit" class="btn btn-default">Submit</button>
+		</form>
+
+    </div>
+  </div>
+
+</div>
+
+
+<footer class="container-fluid text-center">
+  <img src="images/opaetiketa.jpg"  alt="opa"  width="1330" height="130" />
+</footer>
+
+
+
+</body>
+</html>
