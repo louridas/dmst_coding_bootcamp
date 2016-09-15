@@ -4,15 +4,17 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.validation.constraints.*;
 import org.hibernate.validator.constraints.Email;
 
 @Entity
+@Table(name="persons")
 public class Person {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private int id;
     @Size(min = 2, max = 30)
     private String name;
 
@@ -28,6 +30,9 @@ public class Person {
     @NotNull
     @Min(18)
     private Integer age;
+    
+    @Size(min=8, max=30)
+    private String username;
 
     protected Person() {
     }
@@ -40,7 +45,15 @@ public class Person {
 	this.address = adress;
     }
 
-    public String getName() {
+    public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getName() {
 	return this.name;
     }
 
@@ -79,8 +92,17 @@ public class Person {
     public void setAge(Integer age) {
 	this.age = age;
     }
+    
 
-    public String toString() {
+    public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String toString() {
 	return "Person " + this.id + ":\n" + "Name: " + this.name + "\n" + "surname: " + this.sur + "\n" + "Age: "
 		+ this.age + "\n" + "email: " + this.email + "\n" + "Adress: " + this.address + "\n" + "Age: "
 		+ this.age;

@@ -42,7 +42,7 @@ public class WebController extends WebMvcConfigurerAdapter {
     }
     
     @RequestMapping(value = "/form.html", method = RequestMethod.GET)
-    public String showForm(Person personForm) {
+    public String showForm(Person person) {
 	return "form";
     }
     
@@ -54,12 +54,9 @@ public class WebController extends WebMvcConfigurerAdapter {
 	    return "form";
 	}
 
-	repository.save(person);
-	log.info("People found with findAll():");
-	log.info("-------------------------------");
-	for (Person person1 : repository.findAll()) {
-	    log.info(person1.toString());
-	}
+	log.info("About to save user...");
+    repository.save(person);
+    log.info("Saved user.");
 
 	return "redirect:/results";
     }

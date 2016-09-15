@@ -67,6 +67,11 @@
 	 <input type="email" class="form-control" id="email" placeholder="Enter email" th:field="*{email}" />
 	 <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email Error</p>
 	 </div>
+	 <div class="form-group">
+	 <label for="email">Username:</label>
+	 <input type="text" class="form-control" id="username" placeholder="Enter usernamel" th:field="*{username}" />
+	 <p th:if="${#fields.hasErrors('username')}" th:errors="*{username}">username Error</p>
+	 </div>
 	 
 	 <button type="submit" class="btn btn-default">Submit</button>
   </form>

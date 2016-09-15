@@ -13,17 +13,17 @@ public class Subject {
 
 	@Id 
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
+	private long subject_id;
 	
 	@Min(0) @Max(10)
 	private int math,java,oikonomia,posotikes,logistiki;
 
-	public long getId() {
-		return id;
+	public long getsubject_Id() {
+		return subject_id;
 	}
 
-	public void setId(long id) {
-		this.id = id;
+	public void setsubject_Id(long id) {
+		this.subject_id = id;
 	}
 
 	public int getMath() {
@@ -72,7 +72,7 @@ public class Subject {
 	
 	@Override
 	public String toString() {
-		return "Subject [id=" + id + ", math=" + math + ", java=" + java + ", oikonomia=" + oikonomia + ", posotikes="
+		return "Subject [id=" + subject_id + ", math=" + math + ", java=" + java + ", oikonomia=" + oikonomia + ", posotikes="
 				+ posotikes + ", logistiki=" + logistiki + "]";
 	}
 
