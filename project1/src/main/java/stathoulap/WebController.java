@@ -1,71 +1,100 @@
 package stathoulap;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @Controller
 public class WebController extends WebMvcConfigurerAdapter {
 
-    private static final Logger log = LoggerFactory.getLogger(Exercise8Application.class);
+    private static final Logger log = LoggerFactory.getLogger(Application.class);
 
     @Autowired
-    private PersonRepository repository;
+    private SubjectRepository subjectRepository;
     
     @Autowired
-    private SubjectRepository repository2;
+    private UserRepository userRepository;
+    
+    @Autowired
+    private RoleRepository roleRepository;
+    
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+    
+    @Autowired
+    private UserDetailsService userDetailsService;
 
 
-    @RequestMapping(value={"/", "/home"}, method=RequestMethod.GET)
-    public String showHome() {
-	return "home";
-    }
-    
-    
-    @RequestMapping(value={"/katataksi"}, method=RequestMethod.GET)
-    public String showkatataksi() {
-	return "katataksi";
-    }
-    
-    @RequestMapping(value = "/login.html", method = RequestMethod.GET)
-    public String showlogin() {
+    @RequestMapping(value={"/", "/login"}, method=RequestMethod.GET)
+    public String showLogin() {
 	return "login";
     }
     
-    @RequestMapping(value = "/form.html", method = RequestMethod.GET)
-    public String showForm(Person person) {
+    @RequestMapping(value = "/home.html", method = RequestMethod.GET)
+    public String showlogin() {
+	return "home";
+    }
+    
+    @RequestMapping(value = "/form", method = RequestMethod.GET)
+    public String showForm(User user) {
 	return "form";
     }
     
 
-    @RequestMapping(value = "/submit", method = RequestMethod.POST)
-    public String checkPersonInfo(@Valid Person person, BindingResult bindingResult) {
+    @RequestMapping(value = "/form", method = RequestMethod.POST)
+    public String checkPersonInfo(@Valid User user, BindingResult bindingResult) {
+    	
+    if (!user.getPlaintextPassword().equals(
+          user.getPlaintextPasswordConf())) {
+          FieldError fe = new FieldError("user", 
+                     "plaintextPasswordConf", 
+                     "passwords do not match");
+          bindingResult.addError(fe);
+         }
 
 	if (bindingResult.hasErrors()) {
 	    return "form";
 	}
-
-	log.info("About to save user...");
-    repository.save(person);
+	
+	String plaintextPassword = user.getPlaintextPassword();
+    List<Role> roles = roleRepository.findByName("user");
+    user.setRoles(roles);
+    user.setPassword(passwordEncoder.encode((plaintextPassword)));
+   
+    log.info("About to save user...");
+    userRepository.save(user);
     log.info("Saved user.");
-
-	return "redirect:/results";
-    }
+    UserDetails userDetails = 
+            userDetailsService.loadUserByUsername(user.getUsername());
+    UsernamePasswordAuthenticationToken auth = 
+    	new UsernamePasswordAuthenticationToken(userDetails, 
+    		userDetails.getPassword(), userDetails.getAuthorities());
     
-    @RequestMapping(value = "/results", method = RequestMethod.GET)
+    SecurityContextHolder.getContext().setAuthentication(auth);
+    return "home";
+}
+
+    @RequestMapping(value = "/katataksi.html", method = RequestMethod.GET)
     public String showResults(Model model) {
-	Iterable<Person> persons = repository.findAll();
-	model.addAttribute("persons", persons);
-	return "results";
+	Iterable<User> users = userRepository.findAll();
+	model.addAttribute("users", users);
+	return "katataksi";
     }
     
     @RequestMapping(value={"/kataxorisi.html"}, method=RequestMethod.GET)
@@ -80,10 +109,10 @@ public class WebController extends WebMvcConfigurerAdapter {
 	    return "kataxorisi";
 	}
 
-	repository2.save(subject);
+	subjectRepository.save(subject);
 	log.info("Subjects found with findAll():");
 	log.info("-------------------------------");
-	for (Subject subject1 : repository2.findAll()) {
+	for (Subject subject1 : subjectRepository.findAll()) {
 	    log.info(subject1.toString());
 	}
 
@@ -92,7 +121,7 @@ public class WebController extends WebMvcConfigurerAdapter {
     
     @RequestMapping(value = "/results2", method = RequestMethod.GET)
     public String showResults2(Model model) {
-	Iterable<Subject> subjects = repository2.findAll();
+	Iterable<Subject> subjects = subjectRepository.findAll();
 	model.addAttribute("subjects", subjects);
 	return "results2";
     }

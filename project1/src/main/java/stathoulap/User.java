@@ -1,16 +1,22 @@
 package stathoulap;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.JoinColumn;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.*;
 import org.hibernate.validator.constraints.Email;
 
 @Entity
-@Table(name="persons")
-public class Person {
+@Table(name="users")
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -30,20 +36,30 @@ public class Person {
     @NotNull
     @Min(18)
     private Integer age;
-    
+
     @Size(min=8, max=30)
     private String username;
 
-    protected Person() {
+    @Transient
+    @Size(min=8, max=30)
+    private String plaintextPassword;
+
+    @Transient
+    @Size(min=8, max=30)
+    private String plaintextPasswordConf;
+
+    private String password;
+
+	@ManyToMany
+    @JoinTable(name="user_roles",
+    	joinColumns=@JoinColumn(name="user_id", referencedColumnName="id"),
+    	inverseJoinColumns=@JoinColumn(name="role_id",
+    		referencedColumnName="id"))
+    private List<Role> roles;
+
+    protected User() {
     }
 
-    public Person(String name, String sur, int age, String email, String adress) {
-	this.name = name;
-	this.sur = sur;
-	this.age = age;
-	this.email = email;
-	this.address = adress;
-    }
 
     public int getId() {
 		return id;
@@ -92,7 +108,7 @@ public class Person {
     public void setAge(Integer age) {
 	this.age = age;
     }
-    
+
 
     public String getUsername() {
 		return username;
@@ -101,11 +117,39 @@ public class Person {
 	public void setUsername(String username) {
 		this.username = username;
 	}
+	public String getPlaintextPassword() {
+        return plaintextPassword;
+    }
 
-	public String toString() {
-	return "Person " + this.id + ":\n" + "Name: " + this.name + "\n" + "surname: " + this.sur + "\n" + "Age: "
-		+ this.age + "\n" + "email: " + this.email + "\n" + "Adress: " + this.address + "\n" + "Age: "
-		+ this.age;
+    public void setPlaintextPassword(String plaintextPassword) {
+        this.plaintextPassword = plaintextPassword;
+    }
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getPlaintextPasswordConf() {
+        return plaintextPasswordConf;
+    }
+
+    public void setPlaintextPasswordConf(String plaintextPasswordConf) {
+        this.plaintextPasswordConf = plaintextPasswordConf;
+    }
+
+    public List<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
+    }
+
+    public String toString() {
+        return "User(username: " + this.username + ", Age: " + this.age + ")";
     }
 
 }

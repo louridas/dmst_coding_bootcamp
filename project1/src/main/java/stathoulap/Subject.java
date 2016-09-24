@@ -4,26 +4,28 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 
 
 @Entity
+@Table(name="subjects")
 public class Subject {
 
 	@Id 
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long subject_id;
+	private long idsubject;
 	
 	@Min(0) @Max(10)
 	private int math,java,oikonomia,posotikes,logistiki;
 
-	public long getsubject_Id() {
-		return subject_id;
+	public long getsubjectId() {
+		return idsubject;
 	}
 
-	public void setsubject_Id(long id) {
-		this.subject_id = id;
+	public void setsubjectId(long idsubject) {
+		this.idsubject = idsubject;
 	}
 
 	public int getMath() {
@@ -67,12 +69,13 @@ public class Subject {
 	}
 	
 	public float getMesoOro(){
+		
 		return (math+java+oikonomia+posotikes+logistiki)/(float)5;
 	}
 	
 	@Override
 	public String toString() {
-		return "Subject [id=" + subject_id + ", math=" + math + ", java=" + java + ", oikonomia=" + oikonomia + ", posotikes="
+		return "Subject [subjectId=" + idsubject + ", math=" + math + ", java=" + java + ", oikonomia=" + oikonomia + ", posotikes="
 				+ posotikes + ", logistiki=" + logistiki + "]";
 	}
 
