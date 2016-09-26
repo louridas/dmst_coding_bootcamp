@@ -26,7 +26,7 @@ public class WebController extends WebMvcConfigurerAdapter {
     private static final Logger log = LoggerFactory.getLogger(Application.class);
 
     @Autowired
-    private SubjectRepository subjectRepository;
+    private CourseRepository subjectRepository;
     
     @Autowired
     private UserRepository userRepository;
@@ -98,12 +98,12 @@ public class WebController extends WebMvcConfigurerAdapter {
     }
     
     @RequestMapping(value={"/kataxorisi.html"}, method=RequestMethod.GET)
-    public String showkataxorisi(Subject subjectForm) {
+    public String showkataxorisi(Course subjectForm) {
 	return "kataxorisi";
     }
     
     @RequestMapping(value = "/submit2", method = RequestMethod.POST)
-    public String checkSubjectsInfo(@Valid Subject subject, BindingResult bindingResult) {
+    public String checkSubjectsInfo(@Valid Course subject, BindingResult bindingResult) {
 
 	if (bindingResult.hasErrors()) {
 	    return "kataxorisi";
@@ -112,7 +112,7 @@ public class WebController extends WebMvcConfigurerAdapter {
 	subjectRepository.save(subject);
 	log.info("Subjects found with findAll():");
 	log.info("-------------------------------");
-	for (Subject subject1 : subjectRepository.findAll()) {
+	for (Course subject1 : subjectRepository.findAll()) {
 	    log.info(subject1.toString());
 	}
 
@@ -121,7 +121,7 @@ public class WebController extends WebMvcConfigurerAdapter {
     
     @RequestMapping(value = "/results2", method = RequestMethod.GET)
     public String showResults2(Model model) {
-	Iterable<Subject> subjects = subjectRepository.findAll();
+	Iterable<Course> subjects = subjectRepository.findAll();
 	model.addAttribute("subjects", subjects);
 	return "results2";
     }

@@ -8,6 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.JoinColumn;
 import javax.persistence.Table;
 import javax.persistence.Transient;
@@ -28,7 +29,7 @@ public class User {
     private String address;
 
     @Size(min = 2, max = 30)
-    private String sur;
+    private String surname;
 
     @Email
     private String email;
@@ -50,74 +51,77 @@ public class User {
 
     private String password;
 
-	@ManyToMany
+    @ManyToMany
     @JoinTable(name="user_roles",
-    	joinColumns=@JoinColumn(name="user_id", referencedColumnName="id"),
-    	inverseJoinColumns=@JoinColumn(name="role_id",
-    		referencedColumnName="id"))
+    joinColumns=@JoinColumn(name="user_id", referencedColumnName="id"),
+    inverseJoinColumns=@JoinColumn(name="role_id",
+    referencedColumnName="id"))
     private List<Role> roles;
+
+    @OneToMany(mappedBy="userId")
+    private List<Grade> grades;
 
     protected User() {
     }
 
 
     public int getId() {
-		return id;
-	}
+        return id;
+    }
 
-	public void setId(int id) {
-		this.id = id;
-	}
+    public void setId(int id) {
+        this.id = id;
+    }
 
-	public String getName() {
-	return this.name;
+    public String getName() {
+        return this.name;
     }
 
     public void setName(String name) {
-	this.name = name;
+        this.name = name;
     }
 
-    public String getSur() {
-	return this.sur;
+    public String getSurname() {
+        return this.surname;
     }
 
-    public void setSur(String sur) {
-	this.sur = sur;
+    public void setSurname(String surname) {
+        this.surname = surname;
     }
 
     public String getEmail() {
-	return this.email;
+        return this.email;
     }
 
     public void setEmail(String email) {
-	this.email = email;
+        this.email = email;
     }
 
     public String getAddress() {
-	return this.address;
+        return this.address;
     }
 
     public void setAddress(String adress) {
-	this.address = adress;
+        this.address = adress;
     }
 
     public Integer getAge() {
-	return age;
+        return age;
     }
 
     public void setAge(Integer age) {
-	this.age = age;
+        this.age = age;
     }
 
 
     public String getUsername() {
-		return username;
-	}
+        return username;
+    }
 
-	public void setUsername(String username) {
-		this.username = username;
-	}
-	public String getPlaintextPassword() {
+    public void setUsername(String username) {
+        this.username = username;
+    }
+    public String getPlaintextPassword() {
         return plaintextPassword;
     }
 
@@ -148,8 +152,24 @@ public class User {
         this.roles = roles;
     }
 
+    public List<Grade> getGrades() {
+        return grades;
+    }
+
+    public void setGrades(List<Grade> grades) {
+        this.grades = grades;
+    }
+
     public String toString() {
-        return "User(username: " + this.username + ", Age: " + this.age + ")";
+        StringBuffer strBuffer =
+                new StringBuffer("User(username: " + this.username 
+                        + ", Age: " + this.age);
+        List<Grade> grades = getGrades();
+        for (Grade grade : grades) {
+            strBuffer.append(grade.toString());
+        }
+        strBuffer.append(")");
+        return strBuffer.toString();
     }
 
 }
