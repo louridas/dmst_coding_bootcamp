@@ -1,5 +1,7 @@
 package stathoulap;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
@@ -11,8 +13,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 @SpringBootApplication
 public class Application extends SpringBootServletInitializer {
-	
-	
 	
 	@Bean
     public PasswordEncoder passwordEncoder() {
@@ -27,4 +27,5 @@ public class Application extends SpringBootServletInitializer {
     public static void main(String[] args) throws Exception {
         SpringApplication.run(Application.class, args);
     }
+
 }

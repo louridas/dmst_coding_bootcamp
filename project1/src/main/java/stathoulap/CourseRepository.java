@@ -5,10 +5,9 @@ import java.util.List;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
-public interface SubjectRepository extends CrudRepository<Subject, Long> {
+public interface CourseRepository extends CrudRepository<Course, Long> {
 
-    @ModelAttribute("subjects")
-    List<Subject> findBymath(int math); 
+    List<Course> findBySemester(int semester); 
 	
 
 }
